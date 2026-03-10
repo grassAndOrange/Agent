@@ -35,3 +35,17 @@ def rename_file(name: str, new_name: str) -> str:
         return f"File '{name}' successfully renamed to '{new_name}'."
     except Exception as e:
         return f"An error occurred: {e}"
+    
+def create_file(name: str, content: str) -> str:
+    print(f"(create_file {name})")
+    try:
+        new_path = base_dir / name
+        if not str(new_path).startswith(str(base_dir)):
+            return "Error: name is outside base_dir."
+
+        os.makedirs(new_path.parent, exist_ok=True)
+        with open(new_path, "w") as f:
+            f.write(content)
+        return f"File '{name}' successfully created."
+    except Exception as e:
+        return f"An error occurred: {e}"

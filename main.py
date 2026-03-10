@@ -18,6 +18,13 @@ agent = Agent(model,
             ,tools=[tools.read_file, tools.list_files, tools.rename_file])
 def main():
     print("Hello! I'm a Pydantic AI agent using DeepSeek. How can I assist you today?")
+    while True:
+        user_input = input("You: ")
+        if user_input.lower() in ['exit', 'quit']:
+            print("Goodbye!")
+            break
+        response = agent.run_sync(user_input)
+        print(f"Agent: {response.output}")
 
 if __name__ == '__main__':
     main()
